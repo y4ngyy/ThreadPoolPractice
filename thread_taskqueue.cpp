@@ -6,6 +6,7 @@ Practice::TaskQueueThread::TaskQueueThread() {
 
 Practice::TaskQueueThread::~TaskQueueThread() {
   pthread_mutex_destroy(&mMutex);
+  mTaskQueue.clear();
 }
 
 void Practice::TaskQueueThread::addTaskAndNotify(Task *task) {
@@ -25,3 +26,5 @@ Practice::Task *Practice::TaskQueueThread::getTask() {
   pthread_mutex_unlock(&mMutex);
   return task;
 }
+
+void Practice::TaskQueueThread::notifyFinish() { mIsFinish = true; }

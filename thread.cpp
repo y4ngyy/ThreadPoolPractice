@@ -15,3 +15,5 @@ void *Practice::Thread::threadFunc(void *arg) {
   self->run();
   return NULL;
 }
+
+void Practice::Thread::cancel() { pthread_cancel(id); }

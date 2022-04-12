@@ -1,3 +1,4 @@
+#pragma once
 #include <list>
 
 #include "cond.h"
@@ -10,12 +11,13 @@ class TaskQueueThread : public Thread {
   TaskQueueThread();
   ~TaskQueueThread();
   void addTaskAndNotify(Task *task);
+  void notifyFinish();
 
  protected:
   Cond mTaskQueueEmpty;
   pthread_mutex_t mMutex;
   std::list<Task *> mTaskQueue;
-
+  bool mIsFinish;
   Task *getTask();
 };
 }  // namespace Practice

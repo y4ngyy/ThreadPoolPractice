@@ -1,8 +1,8 @@
+#include "include/thread_work.h"
+
 #include <iostream>
 
-#include "include/thread_work.h"
 #include "include/thread_manage.h"
-
 
 Practice::WorkThread::WorkThread(ManageThread *manager) {
   mManager = manager;
@@ -10,12 +10,11 @@ Practice::WorkThread::WorkThread(ManageThread *manager) {
 }
 
 Practice::WorkThread::~WorkThread() {
-
+  std::cout << "WorkThread deconstruct" << '\n';
 }
 
 void Practice::WorkThread::run() {
   Task *task = NULL;
-  mIsBusy = false;
   while (true) {
     mIsBusy = false;
     if (mIsFinish) break;

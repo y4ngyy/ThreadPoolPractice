@@ -1,6 +1,7 @@
+#include "include/thread_manage.h"
+
 #include <iostream>
 
-#include "include/thread_manage.h"
 #include "include/thread_work.h"
 
 Practice::ManageThread::ManageThread(std::list<WorkThread *> *pool,
@@ -10,9 +11,13 @@ Practice::ManageThread::ManageThread(std::list<WorkThread *> *pool,
   mMaxThreads = maxThreads;
 }
 
+Practice::ManageThread::~ManageThread() {}
+
 void Practice::ManageThread::run() {
   Task *task = NULL;
   while (true) {
+    // todo 工作线程在闲时能够回收一些线程
+
     task = getTask();  // 从任务队列中获取任务，队列空则进入睡眠
 
     pthread_mutex_lock(&mThreadBusyMutex);
