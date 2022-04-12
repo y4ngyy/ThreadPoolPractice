@@ -4,7 +4,9 @@ project(thread-pool VERSION 0.1.0)
 # include(CTest)
 # enable_testing()
 
-add_executable(thread-pool main.cpp threadpool.cpp thread.cpp)
+
+file(GLOB native_srcs "./*.cpp")
+add_executable(thread-pool ${native_srcs})
 include_directories(include)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

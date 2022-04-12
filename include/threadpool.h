@@ -3,19 +3,19 @@
 
 #include "task.h"
 #include "thread.h"
+#include "thread_manage.h"
+#include "thread_work.h"
 
 namespace Practice {
 class ThreadPool {
  public:
-  ThreadPool();
+  ThreadPool(int, int);
   ~ThreadPool();
   void addTask(Task *task);
-  void init(int maxThreads);
 
  private:
-  int maxThreads;
+  int mMaxThreadsNum;
   std::list<WorkThread *> mPool;
-  std::list<Task *> mTaskQueue;
   ManageThread *mManageThread;
 };
 

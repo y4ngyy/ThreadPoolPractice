@@ -31,16 +31,16 @@ void TestTaskB::run() {
 }
 
 int main(int, char **) {
-  std::cout << "Hello, world!\n";
-  Practice::ThreadPool *pool = new Practice::ThreadPool();
-  pool->init(5);
-  TestTask *t = new TestTask();
-  TestTaskB *tb = new TestTaskB();
-  pool->addTask(t);
-  pool->addTask(tb);
-  sleep(5);
-  delete t;
-  delete tb;
-  delete pool;
+  // std::cout << "Hello, world!\n";
+  // Practice::ThreadPool *pool = new Practice::ThreadPool();
+  // pool->init(5);
+  // TestTask *t = new TestTask();
+  // TestTaskB *tb = new TestTaskB();
+  // pool->addTask(t);
+  // pool->addTask(tb);
+  // sleep(5);
+  // delete t;
+  // delete tb;
+  // delete pool;
   return 0;
 }

@@ -1,14 +1,11 @@
 #include "include/threadpool.h"
 
-Practice::ThreadPool::ThreadPool() : maxThreads(10) {}
-
-Practice::ThreadPool::~ThreadPool() {}
-
-void Practice::ThreadPool::init(int initThreadsNum) {
-  if (initThreadsNum > maxThreads) initThreadsNum = maxThreads;
+Practice::ThreadPool::ThreadPool(int initThreadsNum, int maxThreadsNum) {
+  if (initThreadsNum > maxThreadsNum) initThreadsNum = maxThreadsNum;
+  mMaxThreadsNum = maxThreadsNum;
   // 线程池初始化时先启动ManageThread
   if (mManageThread == NULL) {
-    mManageThread = new ManageThread(&mPool, &mTaskQueue, maxThreads);
+    mManageThread = new ManageThread(&mPool, mMaxThreadsNum);
   }
   mManageThread->start();
   // 添加WorkThread
@@ -17,6 +14,11 @@ void Practice::ThreadPool::init(int initThreadsNum) {
     t->start();
     mPool.push_back(t);
   }
+}
+
+Practice::ThreadPool::~ThreadPool() {
+  //销毁流程
+  
 }
 
 void Practice::ThreadPool::addTask(Task *task) { mManageThread->addTask(task); }
